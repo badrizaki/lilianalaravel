@@ -1,0 +1,172 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+
+class BaseController extends Controller
+{
+    protected $id = 0;
+    protected $item = null;
+
+    public function __construct()
+    {
+        $this->Auth     = new \Auth();
+        $this->Config   = new \Config();
+        $this->icon     = $this->Config::get('icon');
+        $this->statusCode = $this->Config::get('statusCode');
+
+        $this->statusCode['php_error'] += ['data' => ''];
+        $this->response = $this->statusCode['php_error'];
+        $this->request  = '';
+    }
+
+    public function index(Request $request)
+    {
+        $this->request = $request;
+
+        if ($this->validation($request))
+            $this->response = $this->validation($request);
+        else
+            $this->response = $this->getList();
+
+        return response()->json($this->response); 
+    }
+
+    public function get(Request $request)
+    {
+        $this->request = $request;
+
+        if ($this->validation())
+            $this->response = $this->validation();
+        elseif ($this->getData())
+            $this->response = $this->getData();
+
+        return response()->json($this->response);
+    }
+
+    public function create()
+    {
+        return $this->edit(0);
+    }
+
+    public function edit($id)
+    {
+        $this->id       = $id;
+        $item           = $this->find($id);
+        $this->item     = $item;
+        $lookupTable    = $this->getLookUp();
+        if ($id > 0)
+        {
+            if (count($item) == 0)
+            {
+                return response()->json($this->response);
+            }
+        }
+        return response()->json($this->response);
+    }
+    
+    public function store(Request $request)
+    {
+        return $this->save($request, 0);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return $this->save($request, $id);
+    }
+
+    public function show($id)
+    {
+        $this->id       = $id;
+        $item           = $this->find($id);
+        $this->item     = $item;
+        $lookupTable    = $this->getLookUp();
+        if ($id > 0)
+        {
+            if (count($item) == 0)
+            {
+                return response()->json($this->response);
+            }
+        }
+        return response()->json($this->response);
+    }
+
+    public function destroy($id)
+    {
+        $this->id   = $id;
+        $item       = $this->find($id);
+        $item->delete();
+
+        return response()->json($this->response);
+    }
+
+    protected function getList()
+    {
+        return null;
+    }
+
+    protected function getData()
+    {
+        return null;
+    }
+
+    protected function getLookUp()
+    {
+        return null;
+    }
+    
+    protected function find($id) {
+        return null;
+    }
+
+    public function save(Request $request, $id)
+    {
+        $this->request  = $request;
+        $this->id       = $id;
+
+        if ($this->validation())
+            $this->response = $this->validation();
+        else
+        // elseif ($this->getList())
+        {
+            // $this->response = $this->statusCode['success'];
+            $this->response = $this->saveData($id);
+        }
+
+        return $this->response;
+    }
+
+    protected function validation()
+    {
+        $validator = $this->validateData();
+        if ($validator != null && $validator->fails())
+        {
+            $errors = $validator->errors()->all();
+            $message = '';
+            foreach ($errors as $error)
+            {
+                if ($message == '')
+                    $message .= $error;
+                else
+                    $message .= "\n" . $error;
+            }
+            $this->response = $this->statusCode['validator_invalid'] + ['errors' => $errors];
+            $this->response['message'] = $message;
+            return $this->response;
+        }
+
+        return null;
+    }
+
+    protected function validateData()
+    {
+        return null;
+    }
+
+    protected function saveData($id = 0) { }
+}

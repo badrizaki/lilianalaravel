@@ -1,0 +1,26 @@
+<?php
+
+namespace DummyNamespace;
+
+trait RESTfull
+{
+    public function redirectPath()
+    {
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '';
+    }
+
+    public function redirectIndexPath()
+    {
+        return property_exists($this, 'redirectIndex') ? $this->redirectIndex : '';
+    }
+
+    public function redirectEditablePath()
+    {
+        return property_exists($this, 'redirectEditable') ? $this->redirectEditable : '';
+    }
+
+    public function redirectShowPath()
+    {
+        return property_exists($this, 'redirectShow') ? $this->redirectShow : '';
+    }
+}

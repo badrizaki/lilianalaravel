@@ -1,0 +1,66 @@
+<?php
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use DummyRootNamespaceHttp\Controllers\Controller;
+use DummyRootNamespaceModels\DummyModel;
+use Config;
+
+class DummyClass extends Controller
+{
+    /**
+     * list of data from table.
+     *
+     * @return response json
+     */
+	public function index($value='')
+	{
+        $response = ['statusCode' => '200', 'message' => 'Success', 'data' => ''];
+        return response()->json($response);
+	}
+
+    /**
+     * get one data from table.
+     *
+     * @return response json
+     */
+	public function get($value='')
+	{
+        $response = ['statusCode' => '200', 'message' => 'Success', 'data' => ''];
+        return response()->json($response);
+	}
+
+    /**
+     * add data to table.
+     *
+     * @return response json
+     */
+	public function add($value='')
+	{
+        $response = ['statusCode' => '200', 'message' => 'Success', 'data' => ''];
+        return response()->json($response);
+	}
+
+    /**
+     * update data from table.
+     *
+     * @return response json
+     */
+	public function update($value='')
+	{
+        $response = ['statusCode' => '200', 'message' => 'Success', 'data' => ''];
+        return response()->json($response);
+	}
+
+    /**
+     * delete data from table.
+     *
+     * @return response json
+     */
+	public function destroy($value='')
+	{
+        $response = ['statusCode' => '200', 'message' => 'Success', 'data' => ''];
+        return response()->json($response);
+	}
+}

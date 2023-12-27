@@ -1,0 +1,98 @@
+<?php 
+
+namespace DummyNamespace;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
+class DummyClass extends BaseController
+{
+    protected function getList()
+    {
+        $item = \App\Models\DummyModel::select('*');
+        $item = $item->get()->toArray();
+        if ($item)
+        {
+            return $this->statusCode['success'] += [
+                'data' => $item
+            ];
+        }
+        else {
+            return $this->statusCode['data_null'] += [
+                'data' => $item
+            ];
+        }
+    }
+
+    protected function getData()
+    {
+        $item = \App\Models\DummyModel::where("dummyId", $this->request->dummyId)
+                ->select('*')
+                ->get()->last();
+        
+        if ($item)
+        {
+            $item = $item->toArray();
+
+            return $this->statusCode['success'] += [
+                'data' => $item
+            ];
+        }
+        else {
+            return $this->statusCode['data_null'] += [
+                'data' => $item
+            ];
+        }
+    }
+
+    protected function validateParam()
+    {
+        return Validator::make($this->request->all(), [
+            'dummyId' => 'nullable|numeric',
+        ]);
+    }
+
+    protected function validateData()
+    {
+        return Validator::make($this->request->all(), [
+            'dummyId' => 'required|numeric',
+        ],
+        [
+            'dummyId.required' => 'ID cannot null',
+        ]);
+    }
+
+    protected function saveData($id)
+    {
+        if($id > 0)
+        {
+            \App\Models\DummyModel::where('dummyId', $dummyId)
+            ->update([
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+                'field' => $this->request->field,
+            ]);
+        }
+        else {
+            $item = new \App\Models\DummyModel();
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->field = $this->request->field;
+            $item->save();
+        }
+        return $this->statusCode['success'];
+    }
+}
