@@ -46,7 +46,7 @@
                   </a>
                   <!-- ***** Menu Start ***** -->
                   <ul class="nav">
-                     <li class="scroll-to-section"><a href="{{ url('') }}" class="@yield('homeActive')">Beranda</a></li>
+                     <li class="scroll-to-section"><a href="{{ url('') }}" class="@yield('homeActive')">Beranda -</a></li>
                      <li class="scroll-to-section"><a href="{{ url('about') }}"
                            class="@yield('profileActive')">Profil</a></li>
                      <li class="scroll-to-section"><a href="{{ url('program') }}"
