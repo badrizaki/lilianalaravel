@@ -10,6 +10,7 @@ class Program extends Controller
     {
         $list = [];
         $data = [];
+        $list['program'] = \App\Models\Program::orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
         
         return view('front.program.index', compact('list', 'data'));
     }

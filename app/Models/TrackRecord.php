@@ -4,21 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FinancialStatement extends Model
+class TrackRecord extends Model
 {
-    protected $table = 'financialstatement';
-    protected $primaryKey = 'financialstatementId';
+    protected $table = 'trackrecord';
+    protected $primaryKey = 'trackrecordId';
     protected $fillable = [
 		'title',
 		'titleInd',
-		'shortContent',
-		'shortContentInd',
+		'shortDesc',
+		'shortDescInd',
 		'content',
 		'contentInd',
-		'publishDate',
-		'pdfUrl',
-		'thumbUrl',
 		'imageUrl',
+		'thumbUrl',
+		'externalUrl',
+		'date',
 		'order',
 		'userId',
 		'created_at',

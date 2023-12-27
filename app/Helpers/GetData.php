@@ -20,7 +20,6 @@ abstract class GetData
     static private $data;
     static private $dataTemplate;
     static private $dataTextBank;
-	static private $dataPartner;
 
     public static function setting()
     {
@@ -32,7 +31,7 @@ abstract class GetData
             	self::$data->count = [];
         	}
 
-            $settingData = \App\Models\Setting::where('publish', 1)->orderBy('order', 'ASC');
+            $settingData = \App\Models\Setting::orderBy('order', 'ASC');
             $settingData = $settingData->get();
             if ($settingData)
             {
@@ -98,27 +97,5 @@ abstract class GetData
             self::$textBank = true;
         }
         return self::$dataTextBank;
-    }
-
-    public static function partner()
-    {
-        if (!self::$partner)
-        {
-            if (!self::$dataPartner)
-            {
-                self::$dataPartner = new \stdClass();
-                self::$dataPartner->count = [];
-            }
-
-            $partnerData = \App\Models\Partner::orderBy('order', 'ASC');
-            $partnerData = $partnerData->get();
-            if ($partnerData)
-            {
-                $partnerData = $partnerData->toArray();
-                self::$dataPartner = $partnerData;
-            }
-            self::$partner = true;
-        }
-        return self::$dataPartner;
     }
 }

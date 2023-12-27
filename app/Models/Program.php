@@ -4,21 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DailyReports extends Model
+class Program extends Model
 {
-    protected $table = 'dailyreports';
-    protected $primaryKey = 'dailyreportsId';
+    protected $table = 'program';
+    protected $primaryKey = 'programId';
     protected $fillable = [
 		'title',
 		'titleInd',
-		'shortContent',
-		'shortContentInd',
 		'content',
 		'contentInd',
-		'publishDate',
-		'pdfUrl',
-		'thumbUrl',
-		'imageUrl',
 		'order',
 		'userId',
 		'created_at',

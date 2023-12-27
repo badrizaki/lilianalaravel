@@ -4,21 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SustainabilityReport extends Model
+class Event extends Model
 {
-    protected $table = 'sustainabilityreport';
-    protected $primaryKey = 'sustainabilityreportId';
+    protected $table = 'event';
+    protected $primaryKey = 'eventId';
     protected $fillable = [
 		'title',
 		'titleInd',
-		'shortContent',
-		'shortContentInd',
+		'shortDesc',
+		'shortDescInd',
 		'content',
 		'contentInd',
-		'publishDate',
-		'pdfUrl',
+		'location',
+		'dateEvent',
 		'imageUrl',
+		'thumbUrl',
+		'externalUrl',
 		'order',
+		'main',
 		'userId',
 		'created_at',
 		'updated_at',

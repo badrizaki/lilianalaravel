@@ -21,7 +21,8 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
                     data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
                     <img src="{{ url('assets/front/images/liliana-spd-msi-profile.png') }}"
-                        class="img-fluid d-block ml-auto banner-image-title-page" alt="{{ GetData::setting()->siteName['value'] }}">
+                        class="img-fluid d-block ml-auto banner-image-title-page"
+                        alt="{{ GetData::setting()->siteName['value'] }}">
                 </div>
             </div>
         </div>
@@ -33,42 +34,22 @@
 <section class="news section-padding">
     <div class="container">
         <div class="row">
+            @if(isset($list['news']) && $list['news'])
+            @foreach($list['news'] as $key => $value)
             <div class="col-lg-4 col-md-6 col-12">
-                <div class="news-thumb" style="background-image: url('assets/front/images/galeri (1).jpg');"><a href="#"></a>
+                <div class="news-thumb" style="background-image: url('{{ url('' . $value['thumbUrl']) }}');"><a
+                        href="#"></a>
                 </div>
                 <div class="news-title">
-                    <h2><a href="#">Ziarah ke Makam Bung Karno, Prabowo: Beliau Mempersatukan Kita</a></h2>
+                    <h2><a href="{{ url('news/detail/' . $value['newsId'] ) }}">{{ $value['titleInd'] }}</a></h2>
                 </div>
                 <div class="news-short-content">
-                    <p>Ketua Umum sekaligus calon presiden nomor Urut 02, Prabowo Subianto melakukan Ziarah ke Makam
-                        Bapak Proklamator Ir. Soekarno yang terletak di Blitar, Jawa Timur, Minggu</p>
+                    <p>{{ $value['shortDescInd'] }}</p>
                 </div>
-                <a href="#" class="secondary-button">Selengkapnya</a>
+                <a href="{{ url('news/detail/' . $value['newsId'] ) }}" class="secondary-button">Selengkapnya</a>
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="news-thumb" style="background-image: url('assets/front/images/galeri (1).jpg');"><a href="#"></a>
-                </div>
-                <div class="news-title">
-                    <h2><a href="#">Ziarah ke Makam Bung Karno, Prabowo: Beliau Mempersatukan Kita</a></h2>
-                </div>
-                <div class="news-short-content">
-                    <p>Ketua Umum sekaligus calon presiden nomor Urut 02, Prabowo Subianto melakukan Ziarah ke Makam
-                        Bapak Proklamator Ir. Soekarno yang terletak di Blitar, Jawa Timur, Minggu</p>
-                </div>
-                <a href="#" class="secondary-button">Selengkapnya</a>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="news-thumb" style="background-image: url('assets/front/images/galeri (1).jpg');"><a href="#"></a>
-                </div>
-                <div class="news-title">
-                    <h2><a href="#">Ziarah ke Makam Bung Karno, Prabowo: Beliau Mempersatukan Kita</a></h2>
-                </div>
-                <div class="news-short-content">
-                    <p>Ketua Umum sekaligus calon presiden nomor Urut 02, Prabowo Subianto melakukan Ziarah ke Makam
-                        Bapak Proklamator Ir. Soekarno yang terletak di Blitar, Jawa Timur, Minggu</p>
-                </div>
-                <a href="#" class="secondary-button">Selengkapnya</a>
-            </div>
+            @endforeach
+            @endif
         </div>
     </div>
 </section>

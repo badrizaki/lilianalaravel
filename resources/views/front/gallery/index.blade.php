@@ -34,70 +34,30 @@
     <div class="container">
         <div class="row">
             <h1 style="color: #990000; text-align: center; margin-bottom: 30px; width: 100%;">GALERI</h1>
+
+            @if(isset($list['gallery']) && $list['gallery'])
+            @foreach($list['gallery'] as $key => $value)
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="gallery-thumb">
                     <div class="gallery-info">
-                        <!-- <small class="gallery-tag">Branding</small> -->
-                        <h3 class="gallery-title">Zoik agency</h3>
+                        <!-- <small class="gallery-tag">{{ $value['titleInd'] }}</small> -->
+                        <h3 class="gallery-title">{{ $value['titleInd'] }}</h3>
                     </div>
-                    <a href="assets/front/images/galeri (1).jpg" class="popup-image">
-                        <div style="background-image: url('assets/front/images/galeri (1).jpg');"
+                    <a href="{{ url('' . $value['imageUrl'] ) }}" class="popup-image">
+                        <div style="background-image: url('{{ url('' . $value['imageUrl'] ) }}');"
                             class="gallery-item-image gallery-image img-fluid">
-                            <img src="assets/front/images/galeri (1).jpg" class="img-fluid" alt="">
+                            <img src="{{ url('' . $value['imageUrl'] ) }}" class="img-fluid"
+                                alt="{{ $value['titleInd'] }}">
                         </div>
-                        <!-- <img src="assets/images/galeri (1).jpg" class="gallery-image img-fluid" alt="Liliana"> -->
                     </a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
+            @endforeach
+            @endif
+
+            <!-- <div class="col-lg-4 col-md-6 col-12">
                 <div class="gallery-thumb">
                     <div class="gallery-info">
-                        <!-- <small class="gallery-tag">Photography</small> -->
-                        <h3 class="gallery-title">The Watch</h3>
-                    </div>
-                    <a href="assets/front/images/galeri (2).jpg" class="popup-image">
-                        <div style="background-image: url('assets/front/images/galeri (2).jpg');"
-                            class="gallery-item-image gallery-image img-fluid">
-                            <img src="assets/front/images/galeri (2).jpg" class="img-fluid" alt="">
-                        </div>
-                        <!-- <img src="assets/images/galeri (2).jpg" class="gallery-image img-fluid" alt=""> -->
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="gallery-thumb">
-                    <div class="gallery-info">
-                        <!-- <small class="gallery-tag">Website</small> -->
-                        <h3 class="gallery-title">Polo</h3>
-                    </div>
-                    <a href="assets/front/images/galeri (3).jpg" class="popup-image">
-                        <div style="background-image: url('assets/front/images/galeri (3).jpg');"
-                            class="gallery-item-image gallery-image img-fluid">
-                            <img src="assets/front/images/galeri (3).jpg" class="img-fluid" alt="">
-                        </div>
-                        <!-- <img src="assets/front/images/galeri (3).jpg" class="gallery-image img-fluid" alt=""> -->
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="gallery-thumb">
-                    <div class="gallery-info">
-                        <!-- <small class="gallery-tag">Website</small> -->
-                        <h3 class="gallery-title">Polo</h3>
-                    </div>
-                    <a href="assets/front/images/galeri (3).jpg" class="popup-image">
-                        <div style="background-image: url('assets/front/images/galeri (3).jpg');"
-                            class="gallery-item-image gallery-image img-fluid">
-                            <img src="assets/front/images/galeri (3).jpg" class="img-fluid" alt="">
-                        </div>
-                        <!-- <img src="assets/front/images/galeri (3).jpg" class="gallery-image img-fluid" alt=""> -->
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="gallery-thumb">
-                    <div class="gallery-info">
-                        <!-- <small class="gallery-tag">Website</small> -->
                         <h3 class="gallery-title">Polo</h3>
                     </div>
                     <a href="assets/front/images/videos-liliana.mp4" class="popup-image">
@@ -108,10 +68,9 @@
                                 poster="assets/front/images/liliana-jawa-barat-VI.png"
                                 class="rounded img-fluid d-block mx-auto" controls></video>
                         </div>
-                        <!-- <img src="assets/images/galeri (3).jpg" class="gallery-image img-fluid" alt=""> -->
                     </a>
                 </div>
-            </div>
+            </div> -->
 
         </div>
     </div>

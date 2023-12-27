@@ -4,22 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FullReports extends Model
+class Testimonial extends Model
 {
-    protected $table = 'fullreports';
-    protected $primaryKey = 'fullreportsId';
+    protected $table = 'testimonial';
+    protected $primaryKey = 'testimonialId';
     protected $fillable = [
 		'title',
 		'titleInd',
-		'shortContent',
-		'shortContentInd',
+		'shortDesc',
+		'shortDescInd',
 		'content',
 		'contentInd',
-		'publishDate',
-		'pdfUrl',
-		'thumbUrl',
 		'imageUrl',
+		'thumbUrl',
+		'externalUrl',
 		'order',
+		'main',
 		'userId',
 		'created_at',
 		'updated_at',

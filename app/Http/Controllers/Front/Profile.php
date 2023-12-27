@@ -10,7 +10,8 @@ class Profile extends Controller
     {
         $list = [];
         $data = [];
-        // $list['why'] = \App\Models\Why::orderBy('order', 'ASC')->orderBy("created_at", "DESC")->get();
+        $list['trackRecord'] = \App\Models\TrackRecord::orderBy("date", "DESC")->get()->toArray();
+        $list['program'] = \App\Models\Program::take(3)->orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
         
         return view('front.profile.index', compact('list', 'data'));
     }

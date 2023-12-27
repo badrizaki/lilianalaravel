@@ -10,7 +10,7 @@ class Gallery extends Controller
     {
         $list = [];
         $data = [];
-        // $list['why'] = \App\Models\Why::orderBy('order', 'ASC')->orderBy("created_at", "DESC")->get();
+        $list['gallery'] = \App\Models\Gallery::orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
         
         return view('front.gallery.index', compact('list', 'data'));
     }

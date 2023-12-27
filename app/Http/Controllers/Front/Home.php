@@ -4,13 +4,8 @@ namespace App\Http\Controllers\Front;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-use App\Mail\Contact;
-use Datatables;
-use Mail;
-use DB;
 
 class Home extends Controller
 {
@@ -18,6 +13,9 @@ class Home extends Controller
     {
         $list = [];
         $data = [];
+        $list['program'] = \App\Models\Program::take(3)->orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
+        $list['gallery'] = \App\Models\Gallery::take(3)->orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
+        $list['news'] = \App\Models\News::take(3)->orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
         
         return view('front.home', compact('list', 'data'));
     }

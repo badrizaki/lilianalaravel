@@ -2,10 +2,10 @@
 Route::get('/', 'Front\Home@index')->name('home');
 Route::get('/about', 'Front\Profile@index')->name('profile');
 Route::get('/program', 'Front\Program@index')->name('program');
-Route::get('/program/detail/{id}', 'Front\Program@detail')->name('program');
+Route::get('/program/detail/{id}', 'Front\Program@detail');
 Route::get('/gallery', 'Front\Gallery@index')->name('gallery');
-Route::get('/news', 'Front\News@index')->name('gallery');
-
+Route::get('/news', 'Front\News@index')->name('news');
+Route::get('/news/detail/{id}', 'Front\News@index')->name('news');
 
 Route::get('/search', 'Front\Home@search');
 Route::post('/search', 'Front\Home@search');

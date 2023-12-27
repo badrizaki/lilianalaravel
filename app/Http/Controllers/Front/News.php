@@ -10,6 +10,7 @@ class News extends Controller
     {
         $list = [];
         $data = [];
+        $list['news'] = \App\Models\News::orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
         
         return view('front.news.index', compact('list', 'data'));
     }

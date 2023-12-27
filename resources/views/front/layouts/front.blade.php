@@ -5,8 +5,8 @@
    <meta charset="utf-8">
    <title>{{ GetData::setting()->siteName['value'] }} - @yield('title')</title>
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="{{ GetData::setting()->metaKeywords['value'] }} }}" name="keywords">
-   <meta content="{{ GetData::setting()->metaDesc['value'] }} }}" name="description">
+   <meta content="{{ GetData::setting()->metaKeywords['value'] }}" name="keywords">
+   <meta content="{{ GetData::setting()->metaDesc['value'] }}" name="description">
    <meta name="format-detection" content="telephone=no">
 
    <!-- Favicons -->
@@ -72,9 +72,7 @@
    </header>
    <!-- ***** Header Area End ***** -->
 
-   <div class="container-main-content">
-      @yield('content')
-   </div>
+   @yield('content')
 
    @yield('modal')
 
@@ -89,8 +87,7 @@
                      <img src="{{ url('assets/front/images/logo.png') }}"
                         alt="{{ GetData::setting()->siteName['value'] }}">
                   </a>
-                  <p style="padding: 10px;">Ayo dukung dan doakan saya untuk Indonesia yang lebih maju dengan memilih
-                     saya untuk mewakili suara Anda di lembaga legislatif</p>
+                  <p style="padding: 10px;">{{ GetData::textBank()->topContent['contentInd'] }}</p>
                </div>
             </div>
 
@@ -98,15 +95,15 @@
                <div class="footer-thumb">
                   <h2></h2>
                   <ul class="footer-link">
-                     <li><a href="#">Beranda</a></li>
-                     <li><a href="#">Profil</a></li>
-                     <li><a href="#">Program</a></li>
-                     <li><a href="#">Galeri</a></li>
-                     <li><a href="#">Testimoni</a></li>
-                     <li><a href="#">Event</a></li>
-                     <li><a href="#">Berita</a></li>
-                     <li><a href="#">Dukungan</a></li>
-                     <li><a href="#">Kontak</a></li>
+                     <li><a href="{{ url('') }}" class="@yield('homeActive')">Beranda</a></li>
+                     <li><a href="{{ url('about') }}" class="@yield('profileActive')">Profil</a></li>
+                     <li><a href="{{ url('program') }}" class="@yield('programActive')">Program</a></li>
+                     <li><a href="{{ url('gallery') }}" class="@yield('galleryActive')">Galeri</a></li>
+                     <!-- <li><a href="#" class="@yield('testimoniActive')">Testimoni</a></li> -->
+                     <!-- <li><a href="#" class="@yield('eventActive')">Event</a></li> -->
+                     <li><a href="{{ url ('news') }}" class="@yield('newsActive')">Berita</a></li>
+                     <!-- <li><a href="#">Dukungan</a></li> -->
+                     <li><a href="{{ url('contact') }}" class="@yield('contactActive')">Kontak</a></li>
                   </ul>
                </div>
             </div>
@@ -115,14 +112,40 @@
                <div class="footer-thumb">
                   <h2>Hubungi Kami</h2>
                   <div class="phone-contact">
-                     <p><span>(+66) 010-020-0340</span></p>
-                     <p><span>sekretariat@lilianaspdmsi.com</span></p>
+                     <p><span>{{ GetData::setting()->phoneNumber1['value'] }}</span></p>
+                     <p><span>{{ GetData::setting()->contactEmail['value'] }}</span></p>
                   </div>
                   <ul class="social-icon">
-                     <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                     <li><a href="#" class="fa fa-twitter"></a></li>
-                     <li><a href="#" class="fa fa-instagram"></a></li>
-                     <li><a href="#" class="fa fa-youtube"></a></li>
+                     @if(GetData::setting()->facebook['value'] != null && GetData::setting()->facebook['value'] != "")
+                     <li><a href="{{ GetData::setting()->facebook['value'] }}" class="fa fa-facebook-square"
+                           attr="facebook icon" target="_blank"></a></li>
+                     @endif
+
+                     @if(GetData::setting()->linkedin['value'] != null && GetData::setting()->linkedin['value'] != "")
+                     <li><a href="{{ GetData::setting()->linkedin['value'] }}" class="fa fa-linkedin"
+                           target="_blank"></a></li>
+                     @endif
+
+                     @if(GetData::setting()->instagram['value'] != null && GetData::setting()->instagram['value'] != "")
+                     <li><a href="{{ GetData::setting()->instagram['value'] }}" class="fa fa-instagram"
+                           target="_blank"></a></li>
+                     @endif
+
+                     @if(GetData::setting()->youtube['value'] != null && GetData::setting()->youtube['value'] != "")
+                     <li><a href="{{ GetData::setting()->youtube['value'] }}" class="fa fa-youtube" target="_blank"></a>
+                     </li>
+                     @endif
+
+                     @if(GetData::setting()->tiktok['value'] != null && GetData::setting()->tiktok['value'] != "")
+                     <li><a href="{{ GetData::setting()->tiktok['value'] }}" class="fa fa-tiktok" target="_blank">
+                           <!-- <img src="assets/front/images/tiktok.svg"/> -->
+                           <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
+                              viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+                              <path opacity="1" fill="#FFFFFF"
+                                 d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z" />
+                           </svg>
+                        </a></li>
+                     @endif
                   </ul>
                </div>
             </div>
@@ -131,7 +154,7 @@
                <div class="footer-bottom">
                   <div class="col-12">
                      <div class="copyright-text">
-                        <p>Copyright &copy; 2023 Liliana SPd, MSi. All rights reserved.</p>
+                        <p>Copyright &copy; 2023 {{ GetData::setting()->siteName['value'] }}. All rights reserved.</p>
                      </div>
                   </div>
                </div>

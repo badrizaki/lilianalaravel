@@ -26,7 +26,8 @@ class CustomModelGenerator extends Command
 
     /**
      * The name and signature of the console command.
-     *
+     * php artisan make:custom-model News --table=news
+     * 
      * @var string
      */
     protected $signature = 'make:custom-model {name} {--table=} {--primarykey=}';
