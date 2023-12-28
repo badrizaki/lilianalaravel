@@ -39,10 +39,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'AuthRole']], functi
 	Route::post('/homecontent', 'Admin\Home@store')->name('homecontent.update');
 
 	## TOP BANNER
-	Route::get('/homebanner/delete/{id}', 'Admin\HomeBanner@destroy')->name('homebanner.delete');
-	Route::post('/homebanner/order', 'Admin\HomeBanner@order')->name('homebanner.order');
-	Route::resource('/homebanner', 'Admin\HomeBanner');
-
 	Route::get('/sitename', 'Admin\SiteName@index')->name('sitename.index');
 	Route::post('/sitename', 'Admin\SiteName@store')->name('sitename.update');
 	
@@ -66,8 +62,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'AuthRole']], functi
 	Route::post('/profile', 'Admin\Profile@store')->name('profile.update');
 
 	## OVERVIEW
-	Route::get('/overview', 'Admin\Overview@index')->name('overview.index');
-	Route::post('/overview', 'Admin\Overview@store')->name('overview.update');
+	Route::get('/visimisi', 'Admin\VisiMisi@index')->name('visimisi.index');
+	Route::post('/visimisi', 'Admin\VisiMisi@store')->name('visimisi.update');
 
 	## WHY
 	Route::post('/whymain', 'Admin\Why@storeMain')->name('why.update');

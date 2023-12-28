@@ -24,13 +24,13 @@ $menu = [
 		'text'  => 'Home',
 		'menu' => [
 			[
-				'text'  => 'Dashboard',
+				'text'  => 'Home',
 				'type'  => 'menu',
 				'url'   => 'admin',
 				'icon'  => 'fas fa-fire',
 				'mainPage'	=> 'home',
-				'page'	=> 'dashboard',
-				'route'	=> 'dashboard-list',
+				'page'	=> 'home',
+				'route'	=> 'home-list',
 				'type'	=> 'menu'
 			]
 

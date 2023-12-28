@@ -19,8 +19,8 @@ class News extends Controller
     {
         $list = [];
         $data = [];
-        // $data = \App\Models\News::where("programId", $id)->first();
-        // $data = $data->toArray();
+        $data['news'] = \App\Models\News::where("newsId", $id)->first()->toArray();
+        $list['news'] = \App\Models\News::orderBy('order', 'DESC')->orderBy("created_at", "DESC")->get()->toArray();
 
         return view('front.news.detail', compact('list', 'data'));
     }

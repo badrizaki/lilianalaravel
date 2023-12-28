@@ -9,7 +9,7 @@
 <div class="section-header">
 	<h1>User</h1>
 	<div class="section-header-breadcrumb">
-		<div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+		<div class="breadcrumb-item active"><a href="{{ url('admin') }}">Home</a></div>
 		<div class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></div>
 		<div class="breadcrumb-item">{{ ($id == 0 ? 'Add New' : 'Update') }} User</div>
 	</div>

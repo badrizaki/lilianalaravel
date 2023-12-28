@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
@@ -22,7 +23,7 @@
    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
    <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() { dataLayer.push(arguments); }
       gtag('js', new Date());
 
       gtag('config', 'UA-94034622-3');
@@ -37,10 +38,12 @@
          <nav class="navbar navbar-expand-lg main-navbar">
             <form class="form-inline mr-auto">
                <ul class="navbar-nav mr-3">
-                  <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
-                  <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+                  <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a>
+                  </li>
+                  <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
+                           class="fas fa-search"></i></a></li>
                </ul>
-               <div class="search-element">
+               <!-- <div class="search-element">
                   <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
                   <button class="btn" type="submit"><i class="fas fa-search"></i></button>
                   <div class="search-backdrop"></div>
@@ -49,11 +52,11 @@
                         Histories
                      </div>
                      <div class="search-item">
-                        <a href="#">How to hack NASA using CSS</a>
+                        <a href="#"></a>
                         <a href="#" class="search-close"><i class="fas fa-times"></i></a>
                      </div>
                      <div class="search-item">
-                        <a href="#">Kodinger.com</a>
+                        <a href="#"></a>
                         <a href="#" class="search-close"><i class="fas fa-times"></i></a>
                      </div>
                      <div class="search-item">
@@ -101,10 +104,10 @@
                         </a>
                      </div>
                   </div>
-               </div>
+               </div> -->
             </form>
             <ul class="navbar-nav navbar-right">
-               <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
+               <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle beep"><i class="far fa-envelope"></i></a>
                   <div class="dropdown-menu dropdown-list dropdown-menu-right">
                      <div class="dropdown-header">Messages
                         <div class="float-right">
@@ -228,25 +231,29 @@
                         <a href="#">View All <i class="fas fa-chevron-right"></i></a>
                      </div>
                   </div>
-               </li>
-               <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                  <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                  <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+               </li> -->
+               <li class="dropdown"><a href="#" data-toggle="dropdown"
+                     class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                     <img alt="image" src="{{ url('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
+                     <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
+                  </a>
                   <div class="dropdown-menu dropdown-menu-right">
-                     <div class="dropdown-title">Logged in 5 min ago</div>
+                     <!-- <div class="dropdown-title">Logged in 5 min ago</div> -->
                      <a href="features-profile.html" class="dropdown-item has-icon">
                         <i class="far fa-user"></i> Profile
                      </a>
-                     <a href="features-activities.html" class="dropdown-item has-icon">
+                     <!-- <a href="features-activities.html" class="dropdown-item has-icon">
                         <i class="fas fa-bolt"></i> Activities
                      </a>
                      <a href="features-settings.html" class="dropdown-item has-icon">
                         <i class="fas fa-cog"></i> Settings
-                     </a>
+                     </a> -->
                      <div class="dropdown-divider"></div>
-                     <a href="#" class="dropdown-item has-icon text-danger">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                     </a>
+                     <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+                        class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{
+                        csrf_field() }}</form>
                   </div>
                </li>
             </ul>
@@ -257,52 +264,60 @@
                   <a href="{{ url('') }}">{{ GetData::setting()->siteName['value'] }}</a>
                </div>
                <div class="sidebar-brand sidebar-brand-sm">
-                  <a href="{{ url('') }}">{{ GetData::setting()->siteName['value'] }}</a>
+                  <a href="{{ url('') }}">LILY</a>
                </div>
 
                <ul class="sidebar-menu">
 
                   @foreach (Config::get('menu.menu') as $mainMenu)
-                     <li class="menu-header">{{ $mainMenu['text'] }}</li>
-                     @foreach ($mainMenu['menu'] as $menu)
+                  <li class="menu-header">{{ $mainMenu['text'] }}</li>
+                  @foreach ($mainMenu['menu'] as $menu)
+                  @php
+                  $whiteList = \Config::get('menu.whiteList', []);
+                  $roleName = $menu['mainPage']."-list";
+                  @endphp
+
+                  @if (in_array($roleName, $whiteList) || \Auth::user()->can($roleName))
+
+                  @if($menu['type'] == "accordion")
+
+                  <li class="dropdown {{ $menu['mainPage'] == $mainPage ? 'active' : '' }}">
+                     <a href="#" class="nav-link has-dropdown"><i class="{{ $menu['icon'] }}"></i><span>{{ $menu['text']
+                           }}</span></a>
+                     <ul class="dropdown-menu">
+                        @foreach ($menu['submenu'] as $keySubMenu => $subMenu)
                         @php
-                           $whiteList = \Config::get('menu.whiteList', []);
-                           $roleName = $menu['mainPage']."-list";
+                        $whiteList = \Config::get('menu.whiteList', []);
+                        $roleName = isset($subMenu['route']) ? $subMenu['route'] : "";
                         @endphp
 
-                        @if (in_array($roleName, $whiteList) || \Auth::user()->can($roleName))
-
-                           @if($menu['type'] == "accordion")
-
-                              <li class="dropdown {{ $menu['mainPage'] == $mainPage ? 'active' : '' }}">
-                                 <a href="#" class="nav-link has-dropdown"><i class="{{ $menu['icon'] }}"></i><span>{{ $menu['text'] }}</span></a>
-                                 <ul class="dropdown-menu">
-                                    @foreach ($menu['submenu'] as $keySubMenu => $subMenu)
-                                       @php
-                                          $whiteList = \Config::get('menu.whiteList', []);
-                                          $roleName = isset($subMenu['route']) ? $subMenu['route'] : "";
-                                       @endphp
-
-                                       @if (in_array($roleName, $whiteList) || \Auth::user()->can($roleName) || $subMenu['type'] != "menu")
-                                          @if ($subMenu['type'] == 'divider')
-                                             <li><div class="hrMenu"></div></li>
-                                          @endif
-                                          @if ($subMenu['type'] == 'menu')
-                                             <li {{ $subMenu['page'] == $page ? 'class=active' : ''}}><a {{ ($subMenu['url'] != '') ? 'href='.url(''.$subMenu['url']) : '' }} title="{{ $subMenu['text'] }}" class="nav-link">{{ $subMenu['text'] }}</a></li>
-                                          @endif
-                                       @endif
-
-                                    @endforeach
-                                 </ul>
-                              </li>
-                           @else
-                              <li {{ $menu['page'] == $page ? 'class=active' : ''}}><a class="nav-link" {{ ($menu['url'] != '') ? 'href='.url(''.$menu['url']) : '' }}><i class="{{ $menu['icon'] }}"></i> <span>{{ $menu['text'] }}</span></a></li>
-                           @endif
+                        @if (in_array($roleName, $whiteList) || \Auth::user()->can($roleName) || $subMenu['type'] !=
+                        "menu")
+                        @if ($subMenu['type'] == 'divider')
+                        <li>
+                           <div class="hrMenu"></div>
+                        </li>
                         @endif
-                     @endforeach
+                        @if ($subMenu['type'] == 'menu')
+                        <li {{ $subMenu['page']==$page ? 'class=active' : '' }}><a {{ ($subMenu['url'] !='' ) ? 'href='
+                              .url(''.$subMenu['url']) : '' }} title="{{ $subMenu['text'] }}" class="nav-link">{{
+                              $subMenu['text'] }}</a></li>
+                        @endif
+                        @endif
+
+                        @endforeach
+                     </ul>
+                  </li>
+                  @else
+                  <li {{ $menu['page']==$page ? 'class=active' : '' }}><a class="nav-link" {{ ($menu['url'] !='' )
+                        ? 'href=' .url(''.$menu['url']) : '' }}><i class="{{ $menu['icon'] }}"></i> <span>{{
+                           $menu['text'] }}</span></a></li>
+                  @endif
+                  @endif
+                  @endforeach
                   @endforeach
                </ul>
- 
+
                <!-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
                   <a href="#" class="btn btn-primary btn-lg btn-block btn-icon-split">
                      <i class="fas fa-rocket"></i> Documentation
@@ -317,11 +332,11 @@
             <section class="section">
                @yield('content')
             </section>
-         </div> 
+         </div>
 
          <footer class="main-footer">
             <div class="footer-left">
-               Copyright &copy; {{ date('Y') }} <div class="bullet"></div> <a href="#">Website Name</a>
+               Copyright &copy; {{ date('Y') }} <div class="bullet"></div> <a href="{{ url('') }}" target="_blank">{{ GetData::setting()->siteName['value'] }}</a>
             </div>
             <div class="footer-right">
 
@@ -331,6 +346,9 @@
    </div>
 
    <!-- General JS Scripts -->
+   <script>
+      var publicUrl = '{{ url('') }}';
+   </script>
    <script src="{{ url('assets/modules/jquery.min.js') }}"></script>
    <script src="{{ url('assets/modules/popper.js') }}"></script>
    <script src="{{ url('assets/modules/tooltip.js') }}"></script>
@@ -339,10 +357,17 @@
    <script src="{{ url('assets/modules/moment.min.js') }}"></script>
    <script src="{{ url('assets/js/default.js') }}"></script>
 
+   <script type="text/javascript" src="{{ url('includes/js/cms.plugins.js') }}"></script>
+   <script type="text/javascript" src="{{ url('includes/js/cms.main.js') }}"></script>
+   <script type="text/javascript" src="{{ url('includes/tiny_mce/jquery.tinymce.js') }}"></script>
+   <script type="text/javascript" src="{{ url('includes/tiny_mce/init.tinymce.full.js') }}"></script>
+   <script type="text/javascript" src="{{ url('includes/tiny_mce/plugins/tinybrowser/tb_tinymce.js.php') }}"></script>
+
    <!-- Template JS File -->
    <script src="{{ url('assets/js/scripts.js') }}"></script>
    <script src="{{ url('assets/js/custom.js') }}"></script>
    <script src="{{ url('assets/js/be.main.js') }}"></script>
    @yield('js')
 </body>
+
 </html>
