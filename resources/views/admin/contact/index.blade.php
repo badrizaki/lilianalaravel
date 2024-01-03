@@ -12,7 +12,7 @@
         <div class="breadcrumb-item active"><a href="{{ url('admin') }}">Contact</a></div>
     </div>
 </div>
-<form method="post" action="{{ route('about.update') }}" enctype="multipart/form-data" class="editor">
+<form method="post" action="{{ route('contact.update') }}" enctype="multipart/form-data" class="editor">
     {{ csrf_field() }}
 
     <h2 class="section-title">Contact Management</h2>
