@@ -1,6 +1,7 @@
 @extends('front.layouts.front')
 
 @section('title', 'Contact')
+@section('contactActive', 'active')
 
 @section('css')
 @endsection

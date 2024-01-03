@@ -58,8 +58,7 @@
                      <li class="scroll-to-section"><a href="{{ url ('news') }}" class="@yield('newsActive')">Berita</a>
                      </li>
                      <!-- <li class="scroll-to-section"><a href="#">Dukungan</a></li> -->
-                     <li class="scroll-to-section"><a href="{{ url('contact') }}"
-                           class="@yield('contactActive')">Kontak</a></li>
+                     <!-- <li class="scroll-to-section"><a href="{{ url('contact') }}" class="@yield('contactActive')">Kontak</a></li> -->
                   </ul>
                   <a class='menu-trigger'>
                      <span>Menu</span>
@@ -137,7 +136,7 @@
                      @endif
 
                      @if(GetData::setting()->tiktok['value'] != null && GetData::setting()->tiktok['value'] != "")
-                     <li><a href="{{ GetData::setting()->tiktok['value'] }}" class="fa fa-tiktok" target="_blank">
+                     <li><a href="{{ GetData::setting()->tiktok['value'] }}" class="" target="_blank">
                            <!-- <img src="assets/front/images/tiktok.svg"/> -->
                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14"
                               viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
