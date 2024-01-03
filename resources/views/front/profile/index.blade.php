@@ -6,6 +6,9 @@
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ url('assets/front/css/about.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ url('assets/front/css/timeline.css') }}" />
+<style>
+    #about .content p { margin-bottom: 0px; }
+</style>
 @endsection
 
 @section('content')
@@ -64,10 +67,13 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 content">
                 <br><br>
                 <h1>{!! GetData::textBank()->visimisi['titleInd'] !!}</h1><br>
-                {!! GetData::textBank()->visimisi['contentInd'] !!}
+                {!! GetData::textBank()->visimisi['contentInd'] !!}<br>
+                <video src="{!! GetData::textBank()->visimisi['imageUrl2'] !!}"
+                    poster="{!! GetData::textBank()->visimisi['imageUrl'] !!}" class=" img-fluid d-block mx-auto"
+                    controls></video>
             </div>
         </div>
     </div>
@@ -96,33 +102,33 @@
 
 <!-- ***** Program Start ***** -->
 <section class="section" id="services">
-   <div class="container">
-      <div class="row">
-         <h1 style="color: #990000; text-align: center; margin-bottom: 50px; width: 100%;">PROGRAM</h1>
-         <div class="owl-carousel owl-theme">
+    <div class="container">
+        <div class="row">
+            <h1 style="color: #990000; text-align: center; margin-bottom: 50px; width: 100%;">PROGRAM</h1>
+            <div class="owl-carousel owl-theme">
 
-            @if(isset($list['program']) && $list['program'])
-            @foreach($list['program'] as $key => $value)
-            <div class="item service-item">
-               <img src="{{ url('' . $value['thumbUrl']) }}" class="thumbnail" alt="{{ $value['titleInd'] }}">
-               <h5 class="service-title">{{ $value['titleInd'] }}</h5>
-               <p>{{ $value['shortDescInd'] }}</p>
-               <a href="{{ url('program/detail/'. $value['programId']) }}" class="main-button">Selengkapnya</a>
+                @if(isset($list['program']) && $list['program'])
+                @foreach($list['program'] as $key => $value)
+                <div class="item service-item">
+                    <img src="{{ url('' . $value['thumbUrl']) }}" class="thumbnail" alt="{{ $value['titleInd'] }}">
+                    <h5 class="service-title">{{ $value['titleInd'] }}</h5>
+                    <p>{{ $value['shortDescInd'] }}</p>
+                    <a href="{{ url('program/detail/'. $value['programId']) }}" class="main-button">Selengkapnya</a>
+                </div>
+                @endforeach
+                @endif
+
             </div>
-            @endforeach
-            @endif
-
-         </div>
-      </div>
-   </div>
-   <div class="container load-more-container">
-      <div class="row">
-         <div class="col-12">
-            <a href="{{ url('program') }}" class="secondary-button" style="text-align: center;">Lihat Lebih Banyak
-               Program</a>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
+    <div class="container load-more-container">
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ url('program') }}" class="secondary-button" style="text-align: center;">Lihat Lebih Banyak
+                    Program</a>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- ***** Program End ***** -->
 @stop

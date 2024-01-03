@@ -39,6 +39,37 @@
 								class="tinymce">{!! GetData::textBank()->visimisi['contentInd'] !!}</textarea>
 						</div>
 					</div>
+					
+					<div class="form-group row mb-4">
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail Video</label>
+						<div class="col-sm-12 col-md-7">
+							<span class="notes">Recommended dimension: 1906 x 1080 (recommended) px</span><br><br>
+							<input type="hidden" name="deleteFiledata" id="deleteFiledata" value="">
+							<input type="file" name="Filedata" id="Filedata" class="file_input"
+								onchange="addFile('Filedata')"><br>
+							<br>
+
+							<img src="{{ ((GetData::textBank()->visimisi['imageUrl']) ? image(''.GetData::textBank()->visimisi['imageUrl'], Config::get('app.directory.images')) : '') }}"
+								alt="" style="max-width:400px" id="imageFiledata" />
+							<input type="hidden" name="old_img"
+								value="{{ (GetData::textBank()->visimisi['imageUrl'] ? url(''.GetData::textBank()->visimisi['imageUrl']) : '') }}" />
+						</div>
+					</div>
+					<div class="form-group row mb-4">
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Video</label>
+						<div class="col-sm-12 col-md-7">
+							<input type="hidden" name="deleteFiledata2" id="deleteFiledata2" value="">
+							<input type="file" name="Filedata2" id="Filedata2" class="file_input"
+								onchange="addFile('Filedata2')"><br>
+							<br>
+
+							<video src="{!! url('' . GetData::textBank()->visimisi['imageUrl2']) !!}"
+								poster="{!! url('' . GetData::textBank()->visimisi['imageUrl']) !!}"
+								class="rounded img-fluid d-block mx-auto" controls></video>
+							<input type="hidden" name="old_img2"
+								value="{{ (GetData::textBank()->visimisi['imageUrl2'] ? url(''.GetData::textBank()->visimisi['imageUrl2']) : '') }}" />
+						</div>
+					</div>
 					<div class="form-group row mb-4">
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
 						<div class="col-sm-12 col-md-7">

@@ -43,7 +43,7 @@ class VisiMisi extends BaseController
             $image = $request->Filedata2;
             $imageName = time() . $image->getClientOriginalName();
             // $imageName      = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
-            $destinationPath = $this->Config::get('app.directory.images');
+            $destinationPath = $this->Config::get('app.directory.videos');
             $image->move($destinationPath, $imageName);
             $imageUrl2 = $destinationPath . "/" . $imageName;
             $data = $data + [
