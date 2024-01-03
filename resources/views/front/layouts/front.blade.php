@@ -102,7 +102,7 @@
                      <!-- <li><a href="#" class="@yield('eventActive')">Event</a></li> -->
                      <li><a href="{{ url ('news') }}" class="@yield('newsActive')">Berita</a></li>
                      <!-- <li><a href="#">Dukungan</a></li> -->
-                     <li><a href="{{ url('contact') }}" class="@yield('contactActive')">Kontak</a></li>
+                     <!-- <li><a href="{{ url('contact') }}" class="@yield('contactActive')">Kontak</a></li> -->
                   </ul>
                </div>
             </div>
