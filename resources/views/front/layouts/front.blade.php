@@ -182,6 +182,14 @@
 
    <!-- Global Init -->
    <script src="{{ url('assets/front/js/custom.js') }}"></script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4EX0H2GYF"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-Q4EX0H2GYF');
+   </script>
 
    <!-- <script src="https://kit.fontawesome.com/d45e7e578e.js" crossorigin="anonymous"></script> -->
    <!-- <script src="{{ url('assets/js/jquery.min.js') }}"></script> -->
