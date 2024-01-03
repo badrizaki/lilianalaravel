@@ -198,8 +198,8 @@ $mappingMenu = [
 	"user" => "User",
 	"role" => "Role",
 
-	"contact" => "Contact",
-	"address" => "Address",
+	// "contact" => "Contact",
+	// "address" => "Address",
 	"emails" => "Emails",
 	"setting" => "Setting",
 ];
