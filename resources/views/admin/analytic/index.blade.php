@@ -7,26 +7,45 @@
 @endsection
 
 @section('content')
-<div class="grid_12">
-	<h3>Google Analytic</h3>
-	<br />
-	<form action="{{ route('analytic.index') }}" method="post" id="frm1" name="frm1" enctype="multipart/form-data" >
-		<ol>
-			<li>
-				{{ csrf_field() }}
-				<label for="content">Google Analytic</label>
-				<textarea name="value" cols="80" rows="15" id="value">{{ isset($item['analytic']->value) ? $item['analytic']->value : '' }}</textarea>
-			</li>
-			<li>
-				<label>&nbsp;</label>
-				<input type="submit" name="sendimg" value=" save " /> &nbsp;
-				<input type="button" name="cancel" value=" back " onclick="location.replace('{{ route('adminHome') }}')"/>
-			</li>
-		</ol>
-		<input type="hidden" name="id" value="1" />
-		<input type="hidden" name="grp" value="" />
-	</form>
+<div class="section-header">
+	<h1>Google Analytic</h1>
+	<div class="section-header-breadcrumb">
+		<div class="breadcrumb-item active"><a href="{{ url('admin') }}">Google Analytic</a></div>
+	</div>
 </div>
+<form method="post" action="{{ route('analytic.update') }}" enctype="multipart/form-data" class="editor">
+	{{ csrf_field() }}
+
+	<h2 class="section-title">Google Analytic Management</h2>
+	<p class="section-lead">This menu for management Google Analytic Page.</p>
+
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<h4>Google Analytic</h4>
+				</div>
+				<div class="card-body">
+					<div class="form-group row mb-4">
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Website Google Analytics</label>
+						<div class="col-sm-12 col-md-7">
+							<textarea name="value" cols="80" rows="15" id="value"
+								class="form-control">{!! GetData::setting()->analytic['value'] !!}</textarea>
+						</div>
+					</div>
+					<div class="form-group row mb-4">
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
+						<div class="col-sm-12 col-md-7">
+							<button type="submit" class="btn btn-primary">Save</button>
+							&nbsp;
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" name="id" value="" />
+</form>
 @stop
 
 @section('js')

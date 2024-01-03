@@ -7,32 +7,32 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Datatables;
 
-class News extends BaseController
+class Program extends BaseController
 {
-    protected $mainPage = 'news'; // mainpage
-    protected $page = 'news'; // mainpage
-    protected $redirectTo = 'news'; // REDIRECT URL
-    protected $redirectIndex = 'news.index'; // View
-    protected $redirectEditable = 'news.editable'; // vied add and update
-    protected $redirectShow = 'news.show'; // vied add and update
+    protected $mainPage = 'program'; // mainpage
+    protected $page = 'program'; // mainpage
+    protected $redirectTo = 'program'; // REDIRECT URL
+    protected $redirectIndex = 'program.index'; // View
+    protected $redirectEditable = 'program.editable'; // vied add and update
+    protected $redirectShow = 'program.show'; // vied add and update
 
     /**
      * list ajax for datatables
      */
     protected function listAjax()
     {
-        $item = new \App\Models\News();
+        $item = new \App\Models\Program();
         $item = $item->select(['*']);
 
         return Datatables::of($item)
             ->addColumn('action', function ($item) {
                 $action = '';
-                $action .= '<a href="' . route('news.index') . '/' . $item->newsId . '/edit" class="btn btn-xs btn-primary"><i class="' . $this->icon['tables']['edit'] . '"></i> Edit</a>&nbsp;&nbsp;&nbsp;';
-                // $action .= '<a href="'.route('news.index').'/'.$item->newsId.'" class="btn btn-xs btn-primary"><i class="'.$this->icon['tables']['detail'].'"></i> Detail</a>&nbsp;&nbsp;&nbsp;';
-                $action .= '<a href="#" class="btn btn-xs btn-primary" onClick="listManager.delete(\'' . $item->newsId . '\')"><i class="' . $this->icon['tables']['delete'] . '"></i> Delete</a>';
+                $action .= '<a href="' . route('program.index') . '/' . $item->programId . '/edit" class="btn btn-xs btn-primary"><i class="' . $this->icon['tables']['edit'] . '"></i> Edit</a>&nbsp;&nbsp;&nbsp;';
+                // $action .= '<a href="'.route('program.index').'/'.$item->programId.'" class="btn btn-xs btn-primary"><i class="'.$this->icon['tables']['detail'].'"></i> Detail</a>&nbsp;&nbsp;&nbsp;';
+                $action .= '<a href="#" class="btn btn-xs btn-primary" onClick="listManager.delete(\'' . $item->programId . '\')"><i class="' . $this->icon['tables']['delete'] . '"></i> Delete</a>';
                 return $action;
             })
-            ->editColumn('id', 'ID: {{$newsId}}')
+            ->editColumn('id', 'ID: {{$programId}}')
             ->rawColumns(['action', 'content', 'contentInd', 'shortDescInd']) // raw show html
             ->make(true);
     }
@@ -45,7 +45,7 @@ class News extends BaseController
 
     protected function find($id)
     {
-        return \App\Models\News::find($id);
+        return \App\Models\Program::find($id);
     }
 
     protected function validateData(Request $request, $id)
@@ -71,7 +71,7 @@ class News extends BaseController
 
     protected function saveData(Request $request, $id)
     {
-        $item = new \App\Models\News();
+        $item = new \App\Models\Program();
 
         if ($id > 0)
             $item = $item->find($id);

@@ -30,10 +30,70 @@ $menu = [
 				'icon'  => 'fas fa-fire',
 				'mainPage'	=> 'home',
 				'page'	=> 'home',
-				'route'	=> 'home-list',
-				'type'	=> 'menu'
-			]
-
+				'route'	=> 'home-list'
+			],
+			'profile' => [
+				'text'  => 'Profil',
+				'mainPage'	=> 'about',
+				'icon'  => 'fas fa-user',
+				'type'	=> 'accordion',
+				'submenu' => [
+					[
+						'text'  => 'Tentang',
+						'type'  => 'menu',
+						'url'   => 'admin/about',
+						'icon'  => 'fas fa-user',
+						'mainPage'	=> 'about',
+						'page'	=> 'about',
+						'route'	=> 'about-edit',
+					],
+					[
+						'text'  => 'Visi & Misi',
+						'type'  => 'menu',
+						'url'   => 'admin/visimisi',
+						'icon'  => 'setting',
+						'mainPage'	=> 'about',
+						'page'	=> 'visimisi',
+						'route'	=> 'visimisi-list',
+					],
+					[
+						'text'  => 'Rekam Jejak',
+						'type'  => 'menu',
+						'url'   => 'admin/trackrecord',
+						'icon'  => 'setting',
+						'mainPage'	=> 'about',
+						'page'	=> 'trackrecord',
+						'route'	=> 'trackrecord-edit',
+					]
+				]
+			],
+			[
+				'text'  => 'Program',
+				'type'  => 'menu',
+				'url'   => 'admin/program',
+				'icon'  => 'fas fa-th',
+				'mainPage'	=> 'program',
+				'page'	=> 'program',
+				'route'	=> 'program-list'
+			],
+			[
+				'text'  => 'Galeri',
+				'type'  => 'menu',
+				'url'   => 'admin/gallery',
+				'icon'  => 'fas fa-th',
+				'mainPage'	=> 'gallery',
+				'page'	=> 'gallery',
+				'route'	=> 'gallery-list'
+			],
+			[
+				'text'  => 'Berita',
+				'type'  => 'menu',
+				'url'   => 'admin/news',
+				'icon'  => 'fas fa-th',
+				'mainPage'	=> 'news',
+				'page'	=> 'news',
+				'route'	=> 'news-list'
+			],
 		],
 	],
 
@@ -44,11 +104,10 @@ $menu = [
 				'text'  => 'User',
 				'type'  => 'menu',
 				'url'   => 'admin/user',
-				'icon'  => 'far fa-user',
+				'icon'  => 'fas fa-users',
 				'mainPage'	=> 'user',
 				'page'	=> 'user',
-				'route'	=> 'user-list',
-				'type'	=> 'menu'
+				'route'	=> 'user-list'
 			],
 			[
 				'text'  => 'Role',
@@ -119,10 +178,13 @@ $menu = [
 
 $mappingMenu = [
 	"homecontent" => "Home",
-	"homebanner" => "Home Banner",
-	"partner" => "Partner",
-	"platform" => "Platform",
-	"accountopening" => "Account Opening",
+	"about" => "Tentang",
+	"visimisi" => "Visi & Misi",
+	"trackrecord" => "Rekam Jejak",
+	
+	"program" => "Program",
+	"gallery" => "Galeri",
+	"news" => "Berita",
 
 	"sitename" => "Website Name",
 	"metakey" => "Keyword",
@@ -132,42 +194,7 @@ $mappingMenu = [
 	"changepassword" => "Change Password",
 
 	"profile" => "Profile",
-	"overview" => "Overview",
-	"why" => "Why Minna Padi",
-	"groupstructure" => "Group Structure",
-	"organizationchart" => "Organization Chart",
-	"management" => "Management",
-	"milestone" => "Milestone",
-	"humancapital" => "Human Capital",
-
-	"financialservices" => "Financial Services",
-	"brokerage" => "Brokerage",
-	"underwriting" => "Underwriting",
-
-	"corporategovernance" => "Good Corporate Governance",
-	"corporategovernancefile" => "Good Corporate Governance File",
-	"ccc" => "Corporate Charter",
-	"coc" => "Code of Conduct",
-	"sustainabilityreport" => "Sustainability Report",
-	"csractivities" => "CSR Activities",
-	"license" => "License",
-
-	"investorrelations" => "Investor Relations",
-	"informationdisclosure" => "Information Disclosure",
-	"annualreports" => "Annual Reports",
-	"financialstatement" => "Financial Statement",
-	"meetingshareholders" => "General Meeting Shareholders",
-	"supportinginstitutions" => "Supporting Institutions",
-	"stockinformation" => "Stock Information",
-	"stockhistory" => "Padi Stock History",
-
-	"researchandnews" => "Research And News",
-	"dailyreports" => "Daily Reports",
-	"fullreports" => "Full Reports",
-	"news" => "News",
-
-	"faq" => "FAQ",
-
+	
 	"user" => "User",
 	"role" => "Role",
 

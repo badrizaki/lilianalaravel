@@ -7,33 +7,33 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Datatables;
 
-class News extends BaseController
+class TrackRecord extends BaseController
 {
-    protected $mainPage = 'news'; // mainpage
-    protected $page = 'news'; // mainpage
-    protected $redirectTo = 'news'; // REDIRECT URL
-    protected $redirectIndex = 'news.index'; // View
-    protected $redirectEditable = 'news.editable'; // vied add and update
-    protected $redirectShow = 'news.show'; // vied add and update
+    protected $mainPage = 'about'; // mainpage
+    protected $page = 'trackrecord'; // mainpage
+    protected $redirectTo = 'trackrecord'; // REDIRECT URL
+    protected $redirectIndex = 'trackrecord.index'; // View
+    protected $redirectEditable = 'trackrecord.editable'; // vied add and update
+    protected $redirectShow = 'trackrecord.show'; // vied add and update
 
     /**
      * list ajax for datatables
      */
     protected function listAjax()
     {
-        $item = new \App\Models\News();
+        $item = new \App\Models\TrackRecord();
         $item = $item->select(['*']);
 
         return Datatables::of($item)
             ->addColumn('action', function ($item) {
                 $action = '';
-                $action .= '<a href="' . route('news.index') . '/' . $item->newsId . '/edit" class="btn btn-xs btn-primary"><i class="' . $this->icon['tables']['edit'] . '"></i> Edit</a>&nbsp;&nbsp;&nbsp;';
-                // $action .= '<a href="'.route('news.index').'/'.$item->newsId.'" class="btn btn-xs btn-primary"><i class="'.$this->icon['tables']['detail'].'"></i> Detail</a>&nbsp;&nbsp;&nbsp;';
-                $action .= '<a href="#" class="btn btn-xs btn-primary" onClick="listManager.delete(\'' . $item->newsId . '\')"><i class="' . $this->icon['tables']['delete'] . '"></i> Delete</a>';
+                $action .= '<a href="' . route('trackrecord.index') . '/' . $item->trackrecordId . '/edit" class="btn btn-xs btn-primary"><i class="' . $this->icon['tables']['edit'] . '"></i> Edit</a>&nbsp;&nbsp;&nbsp;';
+                // $action .= '<a href="'.route('trackrecord.index').'/'.$item->trackrecordId.'" class="btn btn-xs btn-primary"><i class="'.$this->icon['tables']['detail'].'"></i> Detail</a>&nbsp;&nbsp;&nbsp;';
+                $action .= '<a href="#" class="btn btn-xs btn-primary" onClick="listManager.delete(\'' . $item->trackrecordId . '\')"><i class="' . $this->icon['tables']['delete'] . '"></i> Delete</a>';
                 return $action;
             })
-            ->editColumn('id', 'ID: {{$newsId}}')
-            ->rawColumns(['action', 'content', 'contentInd', 'shortDescInd']) // raw show html
+            ->editColumn('id', 'ID: {{$trackrecordId}}')
+            ->rawColumns(['action', 'content', 'contentInd']) // raw show html
             ->make(true);
     }
 
@@ -45,7 +45,7 @@ class News extends BaseController
 
     protected function find($id)
     {
-        return \App\Models\News::find($id);
+        return \App\Models\TrackRecord::find($id);
     }
 
     protected function validateData(Request $request, $id)
@@ -71,7 +71,7 @@ class News extends BaseController
 
     protected function saveData(Request $request, $id)
     {
-        $item = new \App\Models\News();
+        $item = new \App\Models\TrackRecord();
 
         if ($id > 0)
             $item = $item->find($id);
@@ -81,21 +81,8 @@ class News extends BaseController
         else
             $item->order = 0;
 
-        if ($request->Filedata) {
-            $image = $request->Filedata;
-            $imageName = time() . $image->getClientOriginalName();
-            // $imageName      = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
-            $destinationPath = $this->Config::get('app.directory.images');
-            $image->move($destinationPath, $imageName);
-            $imageUrl = $destinationPath . "/" . $imageName;
-            $item->imageUrl = $imageUrl;
-            $item->thumbUrl = $imageUrl;
-        }
-
-
-        $item->titleInd = $request->titleInd;
-        $item->shortDescInd = $request->shortDescInd;
         $item->contentInd = $request->contentInd;
+        $item->date = $request->date;
 
         $item->userId = \Auth::user()->id;
         $item->save();

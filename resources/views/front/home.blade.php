@@ -46,8 +46,8 @@
       <div class="row">
          <div class="col-lg-7 col-md-12 col-sm-12" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
             <!-- <img src="{{ url('assets/front/images/liliana-jawa-barat-VI.png') }}" class="rounded img-fluid d-block mx-auto" alt="Liliana"> -->
-            <video src="{!! GetData::textBank()->aboutHome['imageUrl2'] !!}"
-               poster="{!! GetData::textBank()->aboutHome['imageUrl'] !!}" class="rounded img-fluid d-block mx-auto"
+            <video src="{!! url('' . GetData::textBank()->aboutHome['imageUrl2']) !!}"
+               poster="{!! url('' . GetData::textBank()->aboutHome['imageUrl']) !!}" class="rounded img-fluid d-block mx-auto"
                controls></video>
          </div>
          <div class="right-text col-lg-5 col-md-12 col-sm-12 mobile-top-fix">

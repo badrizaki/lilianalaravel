@@ -1,34 +1,34 @@
 @extends('admin.layouts.index')
 
-@section('title', 'Berita')
+@section('title', 'Program')
 
 @section('css')
 @endsection
 
 @section('content')
 <div class="section-header">
-	<h1>Berita</h1>
+	<h1>Program</h1>
 	<div class="section-header-breadcrumb">
 		<div class="breadcrumb-item active"><a href="{{ url('admin') }}">Home</a></div>
-		<div class="breadcrumb-item"><a href="{{ route('news.index') }}">Berita</a></div>
-		<div class="breadcrumb-item">{{ ($id == 0 ? 'Add New' : 'Update') }} Berita</div>
+		<div class="breadcrumb-item"><a href="{{ route('program.index') }}">Program</a></div>
+		<div class="breadcrumb-item">{{ ($id == 0 ? 'Add New' : 'Update') }} Program</div>
 	</div>
 </div>
-<form method="post" action="{{ url(route('news.index') . ($id == 0 ? '' : '/' . $id)) }}"
+<form method="post" action="{{ url(route('program.index') . ($id == 0 ? '' : '/' . $id)) }}"
 	enctype="multipart/form-data" class="editor">
 	{{ csrf_field() }}
 	@if($id != 0)
 	<input name="_method" type="hidden" value="PUT">
 	@endif
 
-	<h2 class="section-title">Berita</h2>
-	<p class="section-lead">This menu for management Berita.</p>
+	<h2 class="section-title">Program</h2>
+	<p class="section-lead">This menu for management Program.</p>
 
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h4>{{ ($id == 0 ? 'Add New' : 'Update') }} Berita</h4>
+					<h4>{{ ($id == 0 ? 'Add New' : 'Update') }} Program</h4>
 				</div>
 				<div class="card-body">
 					<div class="form-group row mb-4">
@@ -40,14 +40,14 @@
 					</div>
 
 					<div class="form-group row mb-4">
-						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Berita</label>
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Program</label>
 						<div class="col-sm-12 col-md-7"><textarea name="shortDescInd" cols="80" rows="15" id="shortDescInd"
 								class="tinymce form-control">{!! old('shortDescInd', isset($item) ? $item->shortDescInd : '') !!}</textarea>
 						</div>
 					</div>
 
 					<div class="form-group row mb-4">
-						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Berita</label>
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Program</label>
 						<div class="col-sm-12 col-md-7"><textarea name="contentInd" cols="80" rows="15" id="contentInd"
 								class="tinymce form-control">{!! old('contentInd', isset($item) ? $item->contentInd : '') !!}</textarea>
 						</div>
@@ -86,7 +86,7 @@
 							<button type="submit" class="btn btn-primary">Save</button>
 							&nbsp;
 							<button type="button" class="btn btn-secondary"
-								onClick="javascript:window.location.href = '{{ route('news.index') }}';return false;">Cancel</button>
+								onClick="javascript:window.location.href = '{{ route('program.index') }}';return false;">Cancel</button>
 						</div>
 					</div>
 				</div>

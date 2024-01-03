@@ -255,6 +255,7 @@ return [
 
     'directory' => [
         "images" => "files/images",
+        "videos" => "files/videos",
         "pdf" => "files/pdf",
         "cv" => "files/cv",
     ],

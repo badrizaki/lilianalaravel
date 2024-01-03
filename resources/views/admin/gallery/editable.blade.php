@@ -1,63 +1,62 @@
 @extends('admin.layouts.index')
 
-@section('title', 'Berita')
+@section('title', 'Galeri')
 
 @section('css')
 @endsection
 
 @section('content')
 <div class="section-header">
-	<h1>Berita</h1>
+	<h1>Galeri</h1>
 	<div class="section-header-breadcrumb">
 		<div class="breadcrumb-item active"><a href="{{ url('admin') }}">Home</a></div>
-		<div class="breadcrumb-item"><a href="{{ route('news.index') }}">Berita</a></div>
-		<div class="breadcrumb-item">{{ ($id == 0 ? 'Add New' : 'Update') }} Berita</div>
+		<div class="breadcrumb-item"><a href="{{ route('gallery.index') }}">Galeri</a></div>
+		<div class="breadcrumb-item">{{ ($id == 0 ? 'Add New' : 'Update') }} Galeri</div>
 	</div>
 </div>
-<form method="post" action="{{ url(route('news.index') . ($id == 0 ? '' : '/' . $id)) }}"
+<form method="post" action="{{ url(route('gallery.index') . ($id == 0 ? '' : '/' . $id)) }}"
 	enctype="multipart/form-data" class="editor">
 	{{ csrf_field() }}
 	@if($id != 0)
 	<input name="_method" type="hidden" value="PUT">
 	@endif
 
-	<h2 class="section-title">Berita</h2>
-	<p class="section-lead">This menu for management Berita.</p>
+	<h2 class="section-title">Galeri</h2>
+	<p class="section-lead">This menu for management Galeri.</p>
 
 	<div class="row">
 		<div class="col-12">
 			<div class="card">
 				<div class="card-header">
-					<h4>{{ ($id == 0 ? 'Add New' : 'Update') }} Berita</h4>
+					<h4>{{ ($id == 0 ? 'Add New' : 'Update') }} Galeri</h4>
 				</div>
 				<div class="card-body">
 					<div class="form-group row mb-4">
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Judul</label>
 						<div class="col-sm-12 col-md-7">
-							<input type="text" name="titleInd" value="{{ old('titleInd', isset($item) ? $item->titleInd : '') }}"
-								class="form-control">
+							<input type="text" name="titleInd"
+								value="{{ old('titleInd', isset($item) ? $item->titleInd : '') }}" class="form-control">
 						</div>
 					</div>
 
 					<div class="form-group row mb-4">
-						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Berita</label>
-						<div class="col-sm-12 col-md-7"><textarea name="shortDescInd" cols="80" rows="15" id="shortDescInd"
-								class="tinymce form-control">{!! old('shortDescInd', isset($item) ? $item->shortDescInd : '') !!}</textarea>
-						</div>
-					</div>
-
-					<div class="form-group row mb-4">
-						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Berita</label>
-						<div class="col-sm-12 col-md-7"><textarea name="contentInd" cols="80" rows="15" id="contentInd"
-								class="tinymce form-control">{!! old('contentInd', isset($item) ? $item->contentInd : '') !!}</textarea>
+						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tipe Galeri</label>
+						<div class="col-sm-12 col-md-7">
+							<select name="galleryType" class="form-control">
+								<option value="">Pilih Tipe Galeri</option>
+								<option value="IMAGE" {{ old('galleryType', (isset($item) && "IMAGE"==$item->
+									galleryType) ? 'selected' : '') }}>Gambar</option>
+								<option value="VIDEO" {{ old('galleryType', (isset($item) && "VIDEO"==$item->
+									galleryType) ? 'selected' : '') }}>Video</option>
+							</select>
 						</div>
 					</div>
 
 					<div class="form-group row mb-4">
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Order</label>
 						<div class="col-sm-12 col-md-7">
-							<input type="number" name="order" value="{{ old('order', isset($item) ? $item->order : '') }}"
-								class="form-control">
+							<input type="number" name="order"
+								value="{{ old('order', isset($item) ? $item->order : '') }}" class="form-control">
 						</div>
 					</div>
 
@@ -65,16 +64,19 @@
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
 						<div class="col-sm-12 col-md-7">
 							<span class="notes">Recommended dimension: 740 x 550 (recommended) px</span><br><br>
-							<!-- <img src="{{ url('assets/icons/icon_del.gif') }}"
-								style="cursor: pointer; vertical-align: middle;"
-								onclick="deleteImage('Filedata')"> -->
 							<input type="hidden" name="deleteFiledata" id="deleteFiledata" value="">
 							<input type="file" name="Filedata" id="Filedata" class="file_input"
 								onchange="addFile('Filedata')"><br>
 							<br>
 
-							<img src="{{ old('imageUrl', isset($item) ? url('' . $item->imageUrl) : '') }}"
-								alt="" style="max-width:400px" id="imageFiledata" />
+							@if (isset($item) && "IMAGE" == $item->galleryType)
+							<img src="{{ old('imageUrl', isset($item) ? url('' . $item->imageUrl) : '') }}" alt=""
+								style="max-width:400px" id="imageFiledata" />
+							@else
+							<video src="{{ old('imageUrl', isset($item) ? url('' . $item->imageUrl) : '') }}"
+								poster="{{ old('imageUrl', isset($item) ? url('' . $item->imageUrl) : '') }}"
+								class="rounded img-fluid d-block mx-auto" controls></video>
+							@endif
 							<input type="hidden" name="old_img"
 								value="{{ old('imageUrl', isset($item) ? $item->imageUrl : '') }}" />
 						</div>
@@ -86,7 +88,7 @@
 							<button type="submit" class="btn btn-primary">Save</button>
 							&nbsp;
 							<button type="button" class="btn btn-secondary"
-								onClick="javascript:window.location.href = '{{ route('news.index') }}';return false;">Cancel</button>
+								onClick="javascript:window.location.href = '{{ route('gallery.index') }}';return false;">Cancel</button>
 						</div>
 					</div>
 				</div>

@@ -87,7 +87,7 @@
                      <img src="{{ url('assets/front/images/logo.png') }}"
                         alt="{{ GetData::setting()->siteName['value'] }}">
                   </a>
-                  <p style="padding: 10px;">{{ GetData::textBank()->topContent['contentInd'] }}</p>
+                  <p style="padding: 10px;">{!! GetData::textBank()->topContent['contentInd'] !!}</p>
                </div>
             </div>
 

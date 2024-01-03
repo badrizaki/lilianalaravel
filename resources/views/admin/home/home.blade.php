@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="section-header">
-	<h1>User</h1>
+	<h1>Home</h1>
 	<div class="section-header-breadcrumb">
 		<div class="breadcrumb-item active"><a href="{{ url('admin') }}">Home</a></div>
 	</div>

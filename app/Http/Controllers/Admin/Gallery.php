@@ -7,33 +7,37 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Datatables;
 
-class News extends BaseController
+class Gallery extends BaseController
 {
-    protected $mainPage = 'news'; // mainpage
-    protected $page = 'news'; // mainpage
-    protected $redirectTo = 'news'; // REDIRECT URL
-    protected $redirectIndex = 'news.index'; // View
-    protected $redirectEditable = 'news.editable'; // vied add and update
-    protected $redirectShow = 'news.show'; // vied add and update
+    protected $mainPage = 'gallery'; // mainpage
+    protected $page = 'gallery'; // mainpage
+    protected $redirectTo = 'gallery'; // REDIRECT URL
+    protected $redirectIndex = 'gallery.index'; // View
+    protected $redirectEditable = 'gallery.editable'; // vied add and update
+    protected $redirectShow = 'gallery.show'; // vied add and update
 
     /**
      * list ajax for datatables
      */
     protected function listAjax()
     {
-        $item = new \App\Models\News();
+        $item = new \App\Models\Gallery();
         $item = $item->select(['*']);
 
         return Datatables::of($item)
+            ->addColumn('thumbUrl', function ($item) {
+                $thumbUrl = '<img src="' . url('' . $item->thumbUrl) . '" width="100px" />';
+                return $thumbUrl;
+            })
             ->addColumn('action', function ($item) {
                 $action = '';
-                $action .= '<a href="' . route('news.index') . '/' . $item->newsId . '/edit" class="btn btn-xs btn-primary"><i class="' . $this->icon['tables']['edit'] . '"></i> Edit</a>&nbsp;&nbsp;&nbsp;';
-                // $action .= '<a href="'.route('news.index').'/'.$item->newsId.'" class="btn btn-xs btn-primary"><i class="'.$this->icon['tables']['detail'].'"></i> Detail</a>&nbsp;&nbsp;&nbsp;';
-                $action .= '<a href="#" class="btn btn-xs btn-primary" onClick="listManager.delete(\'' . $item->newsId . '\')"><i class="' . $this->icon['tables']['delete'] . '"></i> Delete</a>';
+                $action .= '<a href="' . route('gallery.index') . '/' . $item->galleryId . '/edit" class="btn btn-xs btn-primary"><i class="' . $this->icon['tables']['edit'] . '"></i> Edit</a>&nbsp;&nbsp;&nbsp;';
+                // $action .= '<a href="'.route('gallery.index').'/'.$item->galleryId.'" class="btn btn-xs btn-primary"><i class="'.$this->icon['tables']['detail'].'"></i> Detail</a>&nbsp;&nbsp;&nbsp;';
+                $action .= '<a href="#" class="btn btn-xs btn-primary" onClick="listManager.delete(\'' . $item->galleryId . '\')"><i class="' . $this->icon['tables']['delete'] . '"></i> Delete</a>';
                 return $action;
             })
-            ->editColumn('id', 'ID: {{$newsId}}')
-            ->rawColumns(['action', 'content', 'contentInd', 'shortDescInd']) // raw show html
+            ->editColumn('id', 'ID: {{$galleryId}}')
+            ->rawColumns(['action', 'content', 'contentInd', 'shortDescInd', 'thumbUrl']) // raw show html
             ->make(true);
     }
 
@@ -45,7 +49,7 @@ class News extends BaseController
 
     protected function find($id)
     {
-        return \App\Models\News::find($id);
+        return \App\Models\Gallery::find($id);
     }
 
     protected function validateData(Request $request, $id)
@@ -71,7 +75,7 @@ class News extends BaseController
 
     protected function saveData(Request $request, $id)
     {
-        $item = new \App\Models\News();
+        $item = new \App\Models\Gallery();
 
         if ($id > 0)
             $item = $item->find($id);
@@ -89,13 +93,20 @@ class News extends BaseController
             $image->move($destinationPath, $imageName);
             $imageUrl = $destinationPath . "/" . $imageName;
             $item->imageUrl = $imageUrl;
+        }
+
+        if ($request->Filedata2) {
+            $image = $request->Filedata2;
+            $imageName = time() . $image->getClientOriginalName();
+            // $imageName      = md5($image->getClientOriginalName().time()).'.'.$image->getClientOriginalExtension();
+            $destinationPath = $this->Config::get('app.directory.images');
+            $image->move($destinationPath, $imageName);
+            $imageUrl = $destinationPath . "/" . $imageName;
             $item->thumbUrl = $imageUrl;
         }
 
-
         $item->titleInd = $request->titleInd;
-        $item->shortDescInd = $request->shortDescInd;
-        $item->contentInd = $request->contentInd;
+        $item->galleryType = $request->galleryType;
 
         $item->userId = \Auth::user()->id;
         $item->save();
