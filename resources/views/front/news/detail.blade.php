@@ -5,6 +5,11 @@
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ url('assets/front/css/program.css') }}">
+<style>
+    #news .detail p {
+        padding-bottom: 15px;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -35,7 +40,7 @@
 <section class="section" id="news">
     <div class="container">
         <div class="row">
-            <div class="item col-lg-8 col-12">
+            <div class="item col-lg-8 col-12 detail">
                 <h1>{{ $data['news']['titleInd'] }}</h1><br>
                 <img src="{{ url('' . $data['news']['imageUrl']) }}" style="max-width:100%;" /><br><br>
                 {!! $data['news']['contentInd'] !!}
@@ -47,8 +52,10 @@
                     <div class="pull-left container-thumb">
                         <img src="{{ url('' . $value['thumbUrl']) }}" alt="{{ $value['titleInd'] }}">
                     </div>
-                    <h5 class="news-title"><a href="{{ url('news/detail/'. $value['newsId']) }}">{{ $value['titleInd'] }}</a></h5>
-                    <p>{{ $value['shortDescInd'] }}... <a href="{{ url('news/detail/'. $value['newsId']) }}">Selengkapnya</a></p>
+                    <h5 class="news-title"><a href="{{ url('news/detail/'. $value['newsId']) }}">{{ $value['titleInd']
+                            }}</a></h5>
+                    <p>{{ $value['shortDescInd'] }}... <a
+                            href="{{ url('news/detail/'. $value['newsId']) }}">Selengkapnya</a></p>
                 </div>
                 @endforeach
                 @endif
