@@ -36,7 +36,7 @@
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Visi & Misi</label>
 						<div class="col-sm-12 col-md-7">
 							<textarea name="contentInd" cols="80" rows="15" id="contentInd"
-								class="tinymce form-control">{!! GetData::textBank()->visimisi['contentInd'] !!}</textarea>
+								class="tinymce">{!! GetData::textBank()->visimisi['contentInd'] !!}</textarea>
 						</div>
 					</div>
 					<div class="form-group row mb-4">

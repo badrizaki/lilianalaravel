@@ -42,7 +42,7 @@
 					<div class="form-group row mb-4">
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Rekam Jejak</label>
 						<div class="col-sm-12 col-md-7"><textarea name="contentInd" cols="80" rows="15" id="contentInd"
-								class="tinymce form-control">{!! old('contentInd', isset($item) ? $item->contentInd : '') !!}</textarea>
+								class="tinymce">{!! old('contentInd', isset($item) ? $item->contentInd : '') !!}</textarea>
 						</div>
 					</div>
 

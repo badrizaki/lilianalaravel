@@ -167,6 +167,15 @@ $menu = [
 						'page'	=> 'analytic',
 						'route'	=> 'analytic-edit',
 					],
+					[
+						'text'  => 'Kontak',
+						'type'  => 'menu',
+						'url'   => 'admin/contact',
+						'icon'  => 'setting',
+						'mainPage'	=> 'sitename',
+						'page'	=> 'contact',
+						'route'	=> 'contact-edit',
+					],
 				]
 			],
 
@@ -198,9 +207,9 @@ $mappingMenu = [
 	"user" => "User",
 	"role" => "Role",
 
-	// "contact" => "Contact",
+	"contact" => "Kontak",
 	// "address" => "Address",
-	"emails" => "Emails",
+	// "emails" => "Emails",
 	"setting" => "Setting",
 ];
 $whiteList = ["home-list", "adminHome", 'login', 'logout', 'register', 'password.request', 'password.email', 'password.reset', 'generate.menu', 'accessDenied', 'reportPDF', 'reportExcel', 'emailReport', 'reportGrowth', 'slidershowcase-list', 'slidershowcase-delete', 'slidershowcase-index'];

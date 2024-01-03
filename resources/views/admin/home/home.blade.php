@@ -36,14 +36,14 @@
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Konten Banner</label>
 						<div class="col-sm-12 col-md-7">
 							<textarea name="contentInd" cols="80" rows="15" id="contentInd"
-								class="tinymce form-control">{!! GetData::textBank()->topContent['contentInd'] !!}</textarea>
+								class="tinymce">{!! GetData::textBank()->topContent['contentInd'] !!}</textarea>
 						</div>
 					</div>
 					<div class="form-group row mb-4">
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Detail Banner</label>
 						<div class="col-sm-12 col-md-7">
 							<textarea name="content2Ind" cols="80" rows="15" id="content2Ind"
-								class="tinymce form-control">{!! GetData::textBank()->topContent['content2Ind'] !!}</textarea>
+								class="tinymce">{!! GetData::textBank()->topContent['content2Ind'] !!}</textarea>
 						</div>
 					</div>
 

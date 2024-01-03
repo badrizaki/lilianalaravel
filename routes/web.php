@@ -98,9 +98,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'AuthRole']], functi
 	Route::resource('/news', 'Admin\News');
 
 	## CONTACT
-	Route::get('/contact', 'Admin\Contact@index')->name('contact.list');
-	Route::resource('/address', 'Admin\Address');
-	Route::resource('/emails', 'Admin\Email');
+	Route::get('/contact', 'Admin\Contact@index')->name('contact.index');
+	Route::post('/contact', 'Admin\Contact@store')->name('contact.update');
+	// Route::resource('/address', 'Admin\Address');
+	// Route::resource('/emails', 'Admin\Email');
 
 	## TEMPLATE
 	// Route::get('/template/delete/{id}', 'Admin\Template@destroy')->name('template.delete');
