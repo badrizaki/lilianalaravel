@@ -188,7 +188,7 @@ $menu = [
 $mappingMenu = [
 	"homecontent" => "Home",
 	"about" => "Tentang",
-	"visimisi" => "Visi & Misi",
+	"visimisi" => "Visi &amp; Misi",
 	"trackrecord" => "Rekam Jejak",
 	
 	"program" => "Program",
