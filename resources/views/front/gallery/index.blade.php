@@ -43,13 +43,20 @@
                         <!-- <small class="gallery-tag">{{ $value['titleInd'] }}</small> -->
                         <h3 class="gallery-title">{{ $value['titleInd'] }}</h3>
                     </div>
-                    <a href="{{ url('' . $value['imageUrl'] ) }}" class="popup-image">
+                    @if ($value['galleryType'] == "IMAGE")
+                    <a href="{{ url('' . $value['imageUrl'] ) }}" class="popup-image" type="image">
                         <div style="background-image: url('{{ url('' . $value['imageUrl'] ) }}');"
                             class="gallery-item-image gallery-image img-fluid">
                             <img src="{{ url('' . $value['imageUrl'] ) }}" class="img-fluid"
                                 alt="{{ $value['titleInd'] }}">
                         </div>
                     </a>
+                    @else
+                    <a href="{{ url('' . $value['imageUrl'] ) }}" class="popup-image video-link" type="iframe">
+                    <video src="{{ url('' . $value['imageUrl'] ) }}" class="img-fluid d-block mx-auto"
+                        controls></video>
+                    </a>
+                    @endif
                 </div>
             </div>
             @endforeach

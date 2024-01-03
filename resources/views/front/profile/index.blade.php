@@ -72,7 +72,7 @@
                 <h1>{!! GetData::textBank()->visimisi['titleInd'] !!}</h1><br>
                 {!! GetData::textBank()->visimisi['contentInd'] !!}<br>
                 <video src="{!! GetData::textBank()->visimisi['imageUrl2'] !!}"
-                    poster="{!! GetData::textBank()->visimisi['imageUrl'] !!}" class=" img-fluid d-block mx-auto"
+                    poster="{!! GetData::textBank()->visimisi['imageUrl'] !!}" class="img-fluid d-block mx-auto"
                     controls></video>
             </div>
         </div>
