@@ -10,7 +10,7 @@
    <meta name="format-detection" content="telephone=no">
 
    <!-- Favicons -->
-   <link href="{{ url('assets/front/img/favicon.png') }}?v=1.5" rel="icon">
+   <link href="{{ url('assets/front/images/favicon.png') }}?v=1.0" rel="icon">
 
    <link rel="stylesheet" type="text/css" href="{{ url('assets/front/fonts/font.css') }}">
    <link rel="stylesheet" type="text/css" href="{{ url('assets/front/css/bootstrap.min.css') }}">
