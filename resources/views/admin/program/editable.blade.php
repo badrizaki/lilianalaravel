@@ -42,7 +42,7 @@
 					<div class="form-group row mb-4">
 						<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Short Program</label>
 						<div class="col-sm-12 col-md-7"><textarea name="shortDescInd" cols="80" rows="15" id="shortDescInd"
-								class="tinymce form-control">{!! old('shortDescInd', isset($item) ? $item->shortDescInd : '') !!}</textarea>
+								class="form-control">{!! old('shortDescInd', isset($item) ? $item->shortDescInd : '') !!}</textarea>
 						</div>
 					</div>
 
